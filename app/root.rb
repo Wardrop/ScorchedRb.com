@@ -76,8 +76,6 @@ module ScorchedRb
           render File.join('../', files[0]).to_sym
         end
       end
-      
-      p view
 
       response.status = 404 unless view
       view
@@ -86,6 +84,22 @@ module ScorchedRb
     after do
       if response.status == 404
         response.body = [] << render(:'404')
+      end
+    end
+    
+    after do
+      if response['Content-Type'].nil? || response['Content-Type'] =~ %r{^text/html}
+        doc = Nokogiri::HTML(response.body.join(''))
+        doc.css('code').each do |element|
+          if element.inner_text =~ /^#\s*ruby/
+            coderay = Nokogiri::HTML::DocumentFragment.parse(
+              CodeRay.scan(element.inner_text.sub(/^.+\r?\n?/, ''), :ruby).html(:wrap => :span)
+            )
+            element['class'] = 'CodeRay'
+            element.inner_html = coderay.children[0].children.to_html
+          end
+        end
+        response.body = [doc.to_html]
       end
     end
     
