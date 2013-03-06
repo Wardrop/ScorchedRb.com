@@ -1,0 +1,12 @@
+<% items.each do |href, hash|
+  has_children = !!(hash[:children] && !hash[:children].empty?)
+  %>
+  <li <%= 'class="selected"' if has_children || absolute(href) == request.path_info %>>
+    <a href="<%= absolute(href) %>"><%= hash[:name] %></a>
+    <% if has_children %>
+      <ul>
+        <%= render :navigation, locals: {items: hash[:children]} %>
+      </ul>
+    <% end %>
+  </li>
+<% end %>

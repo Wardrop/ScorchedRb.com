@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Scorched</title>
+  <link rel="stylesheet" href="/reset.css" type="text/css" />
+  <link rel="stylesheet" href="/style.css" type="text/css" />
+  <meta charset="utf-8" />
+</head>
+<body>
+  <div id="shoulder">
+    <div id="logo">Scorched</div>
+    <ul id="navigation">
+      <%= render :navigation, locals: {items: navigation} %>
+    </ul>
+  </div>
+  <div id="content">
+    <%= yield %>
+  </div>
+</body>
+</html>

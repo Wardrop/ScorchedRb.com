@@ -1,0 +1,8 @@
+<h1 class="error">Page Not Found!</h1>
+<p>I tried really hard to find what you're after, but just couldn't find it. If you don't believe me, have a look for yourself...</p>
+<div class="code"><%=
+  Dir.glob('../**/*').map { |f|
+    parts = f.split('/')[1..-1]
+    ''.ljust((parts.length - 1) * 4) << '&#9642; ' << parts.last << (Dir.exists?(f) ? '/' : '')
+  }.join("\n")
+%></div>
