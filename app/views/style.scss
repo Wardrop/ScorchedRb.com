@@ -171,7 +171,7 @@ body {
   padding-top: 1.5em;
 }
 
-.code, code {
+pre {
   display: block;
   font-family: 'Consalas', Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
   font-size: 9.5pt;
@@ -181,4 +181,18 @@ body {
   background: #eee;
   border: 1px solid #ddd;
   overflow-x: auto;
+}
+.code, code {
+  display: inline-block;
+  font-family: 'Consalas', Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+  font-size: 9.5pt;
+  padding: 0 0.3em;
+  background: #eee;
+  border: 1px solid #ddd;
+}
+pre > code, pre > .code {
+  display: inline;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
