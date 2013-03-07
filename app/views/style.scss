@@ -52,7 +52,7 @@ body {
   margin: 20px auto;
   width: 1100px;
   padding: 20px 0 20px 320px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 #shoulder {
@@ -168,7 +168,7 @@ body {
 #disqus_thread {
   margin-top: 3em;
   border-top: #ddd 1px solid;
-  padding-top: 1.5em;
+  padding-top: 1.45em;
 }
 
 pre {
@@ -183,7 +183,7 @@ pre {
   overflow-x: auto;
 }
 .code, code {
-  display: inline-block;
+  display: inline;
   font-family: 'Consalas', Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
   font-size: 9.5pt;
   padding: 0 0.3em;
