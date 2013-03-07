@@ -22,6 +22,7 @@ module ScorchedRb
           '/' => {name: 'Home'},
           '/docs' => {name: 'Documentation'},
           'http://github.com/wardrop/Scorched' => {name: 'Code'},
+          'http://github.com/wardrop/Scorched/issues' => {name: 'Tracker'},
           '/about' => {name: 'About'}
         }
         
@@ -30,7 +31,7 @@ module ScorchedRb
         paths = request.path_info.gsub(%r{^/|/$}, '').split('/').reduce([]) { |m,v|
           m << (m.last ? [m.last, v].join('/') : v)
         }.map { |v| v.insert(0, '/') }
-        unless paths.empty?
+        unless paths.empty? || @navigation[paths.first].nil?
           paths.inject(@navigation[paths.first][:children] = {}) do |memo,path|
             memo = memo[path][:children] = {} unless memo.empty?
             if Dir.exists? File.join(base_dir, path)
@@ -63,7 +64,7 @@ module ScorchedRb
         if index_files.empty?
           files = Dir.glob(File.join(path, '*.*'))
           if files.empty?
-            render "<em>No pages exist under: #{page}</em>"
+            render "<p><em>No pages exist under: #{page}</em></p>"
           else
             redirect [page, File.basename(files[0].sub(%r{\..+}, ''))].join('/')
           end
@@ -83,7 +84,7 @@ module ScorchedRb
     
     after do
       if response.status == 404
-        response.body = [] << render(:'404')
+        response.body = [render(:'404')]
       end
     end
     
@@ -91,7 +92,7 @@ module ScorchedRb
       if response['Content-Type'].nil? || response['Content-Type'] =~ %r{^text/html}
         doc = Nokogiri::HTML(response.body.join(''))
         doc.css('code').each do |element|
-          if element.inner_text =~ /^#\s*ruby/
+          if element.inner_text =~ /^\s*#\s*ruby/
             coderay = Nokogiri::HTML::DocumentFragment.parse(
               CodeRay.scan(element.inner_text.sub(/^.+\r?\n?/, ''), :ruby).html(:wrap => :span)
             )
