@@ -82,10 +82,8 @@ module ScorchedRb
       view
     end
     
-    after do
-      if response.status == 404
-        response.body = [render(:'404')]
-      end
+    after status: 404 do
+      response.body = [render(:'404')]
     end
     
     after do
