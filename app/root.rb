@@ -1,6 +1,6 @@
 require 'bundler/setup'
 Bundler.require(:default)
-require_relative 'lib/string'
+Dir.glob(File.join(__dir__, 'lib', '*.rb')) { |f| require_relative f }
 
 module ScorchedRb
   class Root < Scorched::Controller
@@ -35,8 +35,8 @@ module ScorchedRb
           paths.inject(@navigation[paths.first][:children] = {}) do |memo,path|
             memo = memo[path][:children] = {} unless memo.empty?
             if Dir.exists? File.join(base_dir, path)
-              Dir.entries(File.join(base_dir, path)).reject{ |v| ['.', '..', 'index.md'].include? v}.each do |f|
-                f.sub!(%r{\..+$}, '')
+              Dir.entries(File.join(base_dir, path)).shuffle.sensible_sort.reject{ |v| %w{. .. index.md}.include? v}.each do |f|
+                f.sub!(%r{\..+?$}, '')
                 memo[File.join(path, f)] = {name: f.snake_to_titlecase}
               end
             end
@@ -60,9 +60,9 @@ module ScorchedRb
       page = page.empty? ? 'index' : page
       path = File.join('pages', page)
       view = if Dir.exists?(path)
-        index_files = Dir.glob(File.join(path, 'index.*'))
+        index_files = sorted_glob(File.join(path, 'index.*'))
         if index_files.empty?
-          files = Dir.glob(File.join(path, '*.*'))
+          files = sorted_glob(File.join(path, '*.*'))
           if files.empty?
             render "<p><em>No pages exist under: #{page}</em></p>"
           else
@@ -72,7 +72,7 @@ module ScorchedRb
           render File.join('../', index_files[0]).to_sym
         end
       else
-        files = Dir.glob(path + '.*')
+        files = sorted_glob(path + '.*')
         unless files.empty?
           render File.join('../', files[0]).to_sym
         end
@@ -80,6 +80,10 @@ module ScorchedRb
 
       response.status = 404 unless view
       view
+    end
+    
+    def sorted_glob(*args, &block)
+      Dir.glob(*args, &block).sensible_sort!
     end
     
     after do
