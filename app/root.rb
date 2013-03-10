@@ -28,16 +28,21 @@ module ScorchedRb
         
         # Dynamic generation of navigation hiearchy. Only nodes corresponding to the request URL are generated.
         base_dir = 'pages'
-        paths = request.path_info.gsub(%r{^/|/$}, '').split('/').reduce([]) { |m,v|
-          m << (m.last ? [m.last, v].join('/') : v)
-        }.map { |v| v.insert(0, '/') }
-        unless paths.empty? || @navigation[paths.first].nil?
-          paths.inject(@navigation[paths.first][:children] = {}) do |memo,path|
-            memo = memo[path][:children] = {} unless memo.empty?
-            if Dir.exists? File.join(base_dir, path)
-              Dir.entries(File.join(base_dir, path)).shuffle.sensible_sort.reject{ |v| %w{. .. index.md}.include? v}.each do |f|
-                f.sub!(%r{\..+?$}, '')
-                memo[File.join(path, f)] = {name: f.snake_to_titlecase}
+        structure = Dir.glob(File.join(base_dir, '**/*'))
+        paths = request.path_info.gsub(%r{^/|/$}, '').split('/').map! { |v| "[0-9_]*#{v}" }.
+          reduce([]) { |m,v| m << (m.last ? [m.last, v].join('/') : v) }.
+          map! { |path|
+            file = structure.select { |f| f =~ /#{File.join(base_dir, path).insert(0, "^")}/ }[0]
+            {file: file, url: file.sub(%r{^#{base_dir}}, '').gsub(%r{/[0-9_]*}, '/').sub(%r{\.[^.]*$}, '')} if file
+          }.compact
+          
+        unless paths.empty? || @navigation[paths.first[:url]].nil?
+          paths.inject(@navigation[paths.first[:url]][:children] = {}) do |memo, path|
+            memo = memo[path[:url]][:children] = {} unless memo.empty? || !memo[path[:url]]
+            if Dir.exists? path[:file]
+              Dir.entries(path[:file]).reject{ |v| v =~ /^\.|^index\.[^.]*/}.each do |f|
+                f = f.sub(%r{^[0-9_]*}, '').sub(%r{\.[^.]*$}, '')
+                memo[File.join(path[:url], f)] = {name: f.snake_to_titlecase}
               end
             end
             memo
@@ -58,23 +63,23 @@ module ScorchedRb
     # If multiple files with the same name but different extensions exist, the first one returned by Dir#glob is served.
     get %r{(/.*)} do |page|
       page = page.empty? ? 'index' : page
-      path = File.join('pages', page)
-      view = if Dir.exists?(path)
-        index_files = sorted_glob(File.join(path, 'index.*'))
-        if index_files.empty?
-          files = sorted_glob(File.join(path, '*.*'))
-          if files.empty?
-            render "<p><em>No pages exist under: #{page}</em></p>"
+      path_pattern = Regexp.new File.join('pages', page).split('/').map { |v| "[0-9_]*#{v}" }.join('/').insert(0, '^')
+      path = Dir.glob('pages/**/*').unshift('pages').select { |f| f =~ path_pattern }.first
+      view = if path
+        if Dir.exists? path
+          index_files = Dir.glob(File.join(path, 'index.*'))
+          if index_files.empty?
+            files = Dir.glob(File.join(path, '*.*'))
+            if files.empty?
+              render "<p><em>No pages exist under: #{page}</em></p>"
+            else
+              redirect [page, File.basename(files[0]).sub(%r{\..+}, '').sub(%r{^[0-9_]*}, '')].join('/')
+            end
           else
-            redirect [page, File.basename(files[0].sub(%r{\..+}, ''))].join('/')
+            render File.join('../', index_files[0]).to_sym
           end
-        else
-          render File.join('../', index_files[0]).to_sym
-        end
-      else
-        files = sorted_glob(path + '.*')
-        unless files.empty?
-          render File.join('../', files[0]).to_sym
+        elsif File.exists? path
+          render File.join('../', path).to_sym
         end
       end
 
@@ -82,14 +87,8 @@ module ScorchedRb
       view
     end
     
-    def sorted_glob(*args, &block)
-      Dir.glob(*args, &block).sensible_sort!
-    end
-    
-    after do
-      if response.status == 404
-        response.body = [render(:'404')]
-      end
+    after status: 404 do
+      response.body = [render(:'404')]
     end
     
     after do
