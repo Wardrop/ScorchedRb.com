@@ -40,7 +40,7 @@ module ScorchedRb
           paths.inject(@navigation[paths.first[:url]][:children] = {}) do |memo, path|
             memo = memo[path[:url]][:children] = {} unless memo.empty? || !memo[path[:url]]
             if Dir.exists? path[:file]
-              Dir.entries(path[:file]).reject{ |v| v =~ /^\.|^index\.[^.]*/}.each do |f|
+              Dir.entries(path[:file]).sort.reject{ |v| v =~ /^\.|^index\.[^.]*/}.each do |f|
                 f = f.sub(%r{^[0-9_]*}, '').sub(%r{\.[^.]*$}, '')
                 memo[File.join(path[:url], f)] = {name: f.snake_to_titlecase}
               end
@@ -67,9 +67,9 @@ module ScorchedRb
       path = Dir.glob('pages/**/*').unshift('pages').select { |f| f =~ path_pattern }.first
       view = if path
         if Dir.exists? path
-          index_files = Dir.glob(File.join(path, 'index.*'))
+          index_files = Dir.glob(File.join(path, 'index.*')).sort
           if index_files.empty?
-            files = Dir.glob(File.join(path, '*.*'))
+            files = Dir.glob(File.join(path, '*')).sort
             if files.empty?
               render "<p><em>No pages exist under: #{page}</em></p>"
             else

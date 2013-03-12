@@ -6,7 +6,7 @@
 }
 
 h1,h2,h3,h4,h5,h6 {
-  margin-top: 24pt;
+  margin-top: 18pt;
 }
 h1.error, h2.error, h3.error, h4.error, h5.error, h6.error {
   color: #A22;
@@ -26,15 +26,15 @@ h2 {
 }
 h3 {
   font-size: 15pt;
-  margin-bottom: 10pt;
+  margin-bottom: 8pt;
 }
 h4, h5, h6 {
   font-size: 13pt;
-  margin-bottom: 10pt;
+  margin-bottom: 8pt;
 }
 
 p {
-  margin: 1.8em 0 1.2em;
+  margin: 1.2em 0 1.2em;
 }
 
 html {
@@ -50,24 +50,24 @@ body {
 
 #content {
   margin: 20px auto;
-  width: 1100px;
-  padding: 20px 0 20px 320px;
+  width: 1160px;
+  padding: 20px 0 20px 310px;
   line-height: 1.5;
 }
 
 #shoulder {
   position: fixed;
   right: 50%;
-  margin-right: 270px;
+  margin-right: 310px;
   top: 20px;
   bottom: 20px;
-  width: 280px;
+  width: 270px;
   text-align: right;
   padding: 20px 0;
   min-height: 400px;
 }
 
-@media (max-width: 1099px) {
+@media (max-width: 1159px) {
   #content {
     width: 800px;
     padding-left: 280px;
@@ -149,24 +149,28 @@ body {
 #navigation ul {
   margin-top: 3px;
   padding: 3px 0;
-  font-size: 13pt;
+  font-size: 12.5pt;
   color: rgb(89, 31, 18);
 }
 #navigation ul ul {
-  font-size: 11pt;
+  font-size: 10.5pt;
   color: rgb(140, 61, 42);
 }
 
 #content ul {
-  list-style: square inside;
-  margin: 1.6em 0;
+  list-style: disc outside;
+  margin: 1.2em 0 1.2em;
+}
+#content ul ul {
+  list-style-type: circle;
+  margin: 0;
 }
 #content ul > li {
-  margin-left: 2em;
+  margin: 0.2em 0 0.2em 3em;
 }
 
 #disqus_thread {
-  margin-top: 3em;
+  margin-top: 4em;
   border-top: #ddd 1px solid;
   padding-top: 1.45em;
 }
@@ -176,7 +180,7 @@ pre {
   font-family: 'Consalas', Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
   font-size: 9.5pt;
   white-space: pre;
-  padding: 1.2em 1.6em;
+  padding: 1.1em 1.4em;
   margin: 1.8em 0 1.2em;
   background: #eee;
   border: 1px solid #ddd;
@@ -195,4 +199,5 @@ pre > code, pre > .code {
   background: transparent;
   border: none;
   padding: 0;
+  font-size: 9pt;
 }
