@@ -8,11 +8,11 @@ GEM
       rack (>= 0.4)
     redcarpet (2.2.2)
     sass (3.2.6)
-    scorched (0.5.1)
+    scorched (0.5.2)
       rack (~> 1.4)
       rack-accept (~> 0.4.5)
       tilt (~> 1.3)
-    tilt (1.3.4)
+    tilt (1.3.5)
     titleize (1.2.1)
 
 PLATFORMS
