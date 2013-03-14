@@ -4,10 +4,29 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
+a:link, a:hover {
+  color: #0d87d4;
+}
+a:active {
+  color: #D00;
+}
+a:visited {
+  color: #90B;
+}
 
 h1,h2,h3,h4,h5,h6 {
   margin-top: 18pt;
 }
+h1 a:link,h2 a:link,h3 a:link {
+  text-decoration: none;
+}
+h1 a:visited, h2 a:visited {
+  color: #0d87d4;
+}
+h1 a:hover, h2 a:hover {
+  color: #1aa7ff;
+}
+
 h1.error, h2.error, h3.error, h4.error, h5.error, h6.error {
   color: #A22;
 }
