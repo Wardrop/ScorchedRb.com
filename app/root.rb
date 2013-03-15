@@ -21,12 +21,6 @@ module ScorchedRb
         @navigation = {
           '/' => {name: 'Home'},
           '/docs' => {name: 'Documentation'},
-          '/docs1' => {name: 'Documentation'},
-          '/docs2' => {name: 'Documentation'},
-          '/docs3' => {name: 'Documentation'},
-          '/docs4' => {name: 'Documentation'},
-          '/docs5' => {name: 'Documentation'},
-          '/docs6' => {name: 'Documentation'},
           'http://github.com/wardrop/Scorched' => {name: 'Code'},
           'http://github.com/wardrop/Scorched/issues' => {name: 'Tracker'},
           '/about' => {name: 'About'}
