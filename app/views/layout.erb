@@ -13,6 +13,7 @@
     <ul id="navigation">
       <%= render :navigation, locals: {items: navigation} %>
     </ul>
+    <footer>Powered by Scorched v<%= Scorched::VERSION %></footer>
   </div>
   <div id="content">
     <%= yield %>
