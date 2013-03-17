@@ -65,10 +65,11 @@ html {
 body {
   color: #333;
   font-family: 'Open Sans', 'Lucida Sans', 'Arial';
+  padding-bottom: 20px;
 }
 
 #content {
-  margin: 30px auto 20px;
+  margin: 30px auto 0;
   width: 1160px;
   padding-left: 310px;
   line-height: 1.5;

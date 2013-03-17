@@ -6,7 +6,7 @@ module ScorchedRb
   class Root < Scorched::Controller
     # Configure ScorchedRb defaults
     if ENV['RACK_ENV'] == 'development'
-      config[:static_dir] = '../public'
+      config[:static] = '../public'
     end
     view_config[:dir] = 'views'
     view_config[:layout] = :layout
@@ -52,10 +52,10 @@ module ScorchedRb
       @navigation
     end
     
-    # get '/*.css' do |name|
-    #   response['Content-Type'] = 'text/css'
-    #   render :"#{name}.scss", layout: false
-    # end
+    get '/*.css' do |name|
+      response['Content-Type'] = 'text/css'
+      render :"#{name}.scss", layout: false
+    end
     
     # Maps the accessed URL to a file under ./pages
     # If URL maps to a directory, looks for an index file. If no index fle exists, redirects browser to the first file
@@ -88,7 +88,7 @@ module ScorchedRb
     end
     
     after status: 404 do
-      response.body = [render(:'404')]
+      response.body = render(:'404')
     end
     
     after do
