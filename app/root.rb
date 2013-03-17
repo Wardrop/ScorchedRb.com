@@ -73,7 +73,7 @@ module ScorchedRb
             if files.empty?
               render "<p><em>No pages exist under: #{page}</em></p>"
             else
-              redirect [page, File.basename(files[0]).sub(%r{\..+}, '').sub(%r{^[0-9_]*}, '')].join('/')
+              redirect [page, File.basename(files[0]).sub(%r{\..+}, '').sub(%r{^[0-9_]*}, '')].join('/').gsub(%r{/+}, '/')
             end
           else
             render File.join('../', index_files[0]).to_sym
@@ -92,7 +92,7 @@ module ScorchedRb
     end
     
     after do
-      if response['Content-Type'].nil? || response['Content-Type'] =~ %r{^text/html}
+      if !response['Content-Type'] || response['Content-Type'] =~ %r{^text/html}
         doc = Nokogiri::HTML(response.body.join(''))
         doc.css('code').each do |element|
           if element.inner_text =~ /^\s*#\s*ruby/
