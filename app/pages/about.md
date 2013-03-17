@@ -16,9 +16,9 @@ In hind-sight, what Scorched has turned into is some kind modular, inheritable, 
 
 ...Me
 -----
-I'm <a href="http://tomwardrop.com">Tom Wardrop</a>. A web-enthusiast and developer. I'm employed as a software developer at my local Council. About 60% of my job involves dealing with Ruby, linux and other web technologies, whilst the other 40% is spent in the world of Microsoft, and my arch nemesis, SharePoint.
+I'm <a href="http://tomwardrop.com">Tom Wardrop</a>. A web-enthusiast and developer, based in Australia. I'm currently employed as a software developer at my local Council. About 60% of my job involves dealing with Ruby, linux and other web technologies, whilst the other 40% is spent in the world of Microsoft, and my arch nemesis, SharePoint.
 
-It's kind of ironic in that SharePoint and Scorched could not be further apart in terms of architecture and design philosophy. It seems for SharePoint, the focus is on what's implemented, rather than how, and this results in the most bloated, inelegant web application I've come to know. But it does integrate with Office, sometimes... assuming your office version coincides the version of SharePoint, and that you're using Internet Explorer, and that _n_ other conditions are met, but this is all I can attribute to its success.
+It's ironic how SharePoint and Scorched could not be further apart in terms of architecture and design philosophy. It seems for SharePoint, the focus is on what's implemented, rather than how it's implemented, and this results in the most bloated, inelegant web application I've come to know. But it does integrate with Office, sometimes... assuming your office version coincides the version of SharePoint, and that you're using Internet Explorer, and that _n_ other conditions are met, but this is all I can attribute to its success.
 
 I intend to start a blog, mostly about web development and general philosophy, with the occasional rant about SharePoint and what we can all learn (or not learn) from it.
 
