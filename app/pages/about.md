@@ -14,6 +14,24 @@ From when I made the decision to roll-my-own, to the moment I pushed up version 
 In hind-sight, what Scorched has turned into is some kind modular, inheritable, nestable version of Sinatra... but of course better.
 
 
+...ScorchedRb.com
+-----------------
+You can get a copy of the source code for this website, or even contribute over at [Github](http://github.com/Wardrop/ScorchedRb.com). It should serve as another example of Scorched in action, albiet a relatively simple one. In addition to Scorched, this website is also powered by:
+
+* Xen VM with 384mb RAM and 1 vCPU
+* CentOS 6.3
+* Nginx
+* Phusion Passenger
+* Ruby 2.0.0-p0
+* Git
+
+Everything under docs is pulled from the ``docs/`` directory of the Scorched Github repository. At the same time, the README is also pulled over to form the home page. This sync happens every half hour, and on re-deployment. Deployment is achieved by pushing to a bare git repository on this server, with a ``post-receive`` hook script configured to checkout to the production directory, run bundler, and restart the app among a few other things.
+
+I'd like to add that this website is also IPv6-ready. I've got my subnet of 16 million IPv6 addresses assigned and ready to go.
+
+_Note: There seems to be a bug in Ruby 2.0.0-p0 that causes a segfault when used in combination with Passenger's smart spawn method, so for the moment at least, Passenger is configured to spawn new instances conservatively, though the startup time for this website is almost instant anyway, and the memory foot-print is already low._
+
+
 ...Me
 -----
 I'm <a href="http://tomwardrop.com">Tom Wardrop</a>. A web-enthusiast and developer, based in Australia. I'm currently employed as a software developer at my local Council. About 60% of my job involves dealing with Ruby, linux and other web technologies, whilst the other 40% is spent in the world of Microsoft, and my arch nemesis, SharePoint.
