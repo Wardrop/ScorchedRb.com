@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <title>Scorched</title>
-  <link rel="stylesheet" href="<%= absolute('reset.css') %>" type="text/css" />
-  <link rel="stylesheet" href="<%= absolute('style.css') %>" type="text/css" />
-  <link rel="stylesheet" href="<%= absolute('coderay_github.css') %>" type="text/css" />
+  <link rel="stylesheet" href="<%= absolute 'reset.css' %>" type="text/css" />
+  <link rel="stylesheet" href="<%= absolute 'style.css' %>" type="text/css" />
+  <link rel="stylesheet" href="<%= absolute 'coderay_github.css' %>" type="text/css" />
   <meta charset="utf-8" />
 </head>
 <body>
   <div id="shoulder">
-    <div id="logo">Scorched</div>
+    <a id="logo" href="<%= absolute %>">Scorched</a>
     <ul id="navigation">
       <%= render :navigation, locals: {items: navigation} %>
     </ul>

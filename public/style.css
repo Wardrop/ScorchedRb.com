@@ -100,12 +100,14 @@ body {
 }
 
 #logo {
+  display: block;
   padding: 4%;
   color: white;
   font-family: 'Titillium Web', 'Lucida Sans', 'Arial';
   font-size: 36pt;
-  background: #BF4000;
+  background: rgb(191, 64, 0);
   margin-bottom: 20px;
+  text-decoration: none;
 }
 
 #navigation {
