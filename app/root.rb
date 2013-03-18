@@ -8,8 +8,8 @@ module ScorchedRb
     if ENV['RACK_ENV'] == 'development'
       config[:static] = '../public'
     end
-    view_config[:dir] = 'views'
-    view_config[:layout] = :layout
+    render_defaults[:dir] = 'views'
+    render_defaults[:layout] = :layout
     
     def pages
       return @pages if @pages
