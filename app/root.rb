@@ -23,6 +23,7 @@ module ScorchedRb
           '/docs' => {name: 'Documentation'},
           'http://github.com/wardrop/Scorched' => {name: 'Code'},
           'http://github.com/wardrop/Scorched/issues' => {name: 'Tracker'},
+          'https://groups.google.com/d/forum/scorched' => {name: 'Discuss'},
           '/about' => {name: 'About'}
         }
         
