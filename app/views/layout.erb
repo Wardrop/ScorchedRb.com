@@ -17,6 +17,7 @@
     <footer>Powered by Scorched v<%= Scorched::VERSION %></footer>
   </div>
   <div id="content">
+    <div class="notice">There's currently a bug in Ruby 2.0.0 that causes random segmentation faults to occur. These manifest as a random "bad gateway" error whilst browsing this site.</div>
     <%= yield %>
     <% if request.path_info =~ %r{/docs($|/)} && response.status < 400 %>
       <div id="disqus_thread"></div>

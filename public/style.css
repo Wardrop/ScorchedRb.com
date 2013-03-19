@@ -191,6 +191,14 @@ body {
   margin: 0.2em 0 0.2em 3em;
 }
 
+#content .notice {
+  padding: 12px 24px;
+  background: #A22;
+  text-align: left;
+  color: white;
+  font-size: 10pt;
+}
+
 #disqus_thread {
   margin-top: 4em;
   border-top: #ddd 1px solid;
