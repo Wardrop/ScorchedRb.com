@@ -1,8 +1,6 @@
 About
 =====
 
-Scorched
---------
 So how did Scorched come to be? It began as a result of using Sinatra - and subsequently Padrino - on a council web application for managing cemeteries. The numerous excel spreadsheets the system was replacing resulted in more than one instance of someone being buried in the wrong hole.
 
 I had previous experience with Sinatra, but not with anything of scale. Early in the project I made the move from Sinatra to Padrino as I wanted to split out my growing collection of routes into discreet controllers. I didn't want all my helpers, views, filters, etc, to be lumped into one big global controller, which would have quickly turned into frustrating and unmaintainable mess.

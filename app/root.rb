@@ -88,12 +88,12 @@ module ScorchedRb
       view
     end
     
-    after status: 404 do
-      response.body = render(:'404')
-    end
+    # after status: 404 do
+    #   response.body = render(:'404')
+    # end
     
     after do
-      if !response['Content-Type'] || response['Content-Type'] =~ %r{^text/html}
+      if !response.body.compact.empty? && (!response['Content-Type'] || response['Content-Type'] =~ %r{^text/html})
         doc = Nokogiri::HTML(response.body.join(''))
         doc.css('code').each do |element|
           if element.inner_text =~ /^\s*#\s*ruby/
