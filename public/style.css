@@ -198,6 +198,9 @@ body {
   color: white;
   font-size: 10pt;
 }
+#content .notice a {
+  color: white;
+}
 
 #disqus_thread {
   margin-top: 4em;
