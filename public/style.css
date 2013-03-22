@@ -15,7 +15,7 @@ a:visited {
 }
 
 h1,h2,h3,h4,h5,h6 {
-  margin-top: 18pt;
+  margin-top: 16pt;
 }
 h1 a:link,h2 a:link,h3 a:link {
   text-decoration: none;
@@ -44,11 +44,15 @@ h2 {
   margin-bottom:  12pt;
 }
 h3 {
-  font-size: 15pt;
+  font-size: 14pt;
   margin-bottom: 8pt;
 }
-h4, h5, h6 {
+h4{
   font-size: 13pt;
+  margin-bottom: 8pt;
+}
+h5, h6 {
+  font-size: 12pt;
   margin-bottom: 8pt;
 }
 
