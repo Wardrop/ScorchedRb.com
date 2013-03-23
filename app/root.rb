@@ -102,7 +102,7 @@ module ScorchedRb
         doc = Nokogiri::HTML(response.body.join(''))
         doc.css('code.ruby').each do |element|
           coderay = Nokogiri::HTML::DocumentFragment.parse(
-            CodeRay.scan(element.inner_text.sub(/^.+\r?\n?/, ''), :ruby).html(:wrap => :span)
+            CodeRay.scan(element.inner_text, :ruby).html(:wrap => :span)
           )
           element['class'] = 'CodeRay'
           element.inner_html = coderay.children[0].children.to_html
