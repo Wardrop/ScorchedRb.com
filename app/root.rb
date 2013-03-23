@@ -10,6 +10,7 @@ module ScorchedRb
     end
     render_defaults[:dir] = 'views'
     render_defaults[:layout] = :layout
+    render_defaults[:fenced_code_blocks] = true
     
     def pages
       return @pages if @pages
@@ -99,14 +100,12 @@ module ScorchedRb
     after status: 200 do
       if response.body.respond_to?(:join) && (!response['Content-Type'] || response['Content-Type'] =~ %r{^text/html})
         doc = Nokogiri::HTML(response.body.join(''))
-        doc.css('code').each do |element|
-          if element.inner_text =~ /^\s*#\s*ruby/
-            coderay = Nokogiri::HTML::DocumentFragment.parse(
-              CodeRay.scan(element.inner_text.sub(/^.+\r?\n?/, ''), :ruby).html(:wrap => :span)
-            )
-            element['class'] = 'CodeRay'
-            element.inner_html = coderay.children[0].children.to_html
-          end
+        doc.css('code.ruby').each do |element|
+          coderay = Nokogiri::HTML::DocumentFragment.parse(
+            CodeRay.scan(element.inner_text.sub(/^.+\r?\n?/, ''), :ruby).html(:wrap => :span)
+          )
+          element['class'] = 'CodeRay'
+          element.inner_html = coderay.children[0].children.to_html
         end
         response.body = [doc.to_html]
       end

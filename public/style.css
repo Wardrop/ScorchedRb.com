@@ -14,8 +14,14 @@ a:visited {
   color: #90B;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2 {
+  font-weight: 300;
+  margin-top: 18pt;
+  margin-bottom:  11pt;
+}
+h3,h4,h5,h6 {
   margin-top: 16pt;
+  margin-bottom:  11pt;
 }
 h1 a:link,h2 a:link,h3 a:link {
   text-decoration: none;
@@ -34,30 +40,24 @@ h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:fi
   margin-top: 0;
 }
 h1 {
-  font-weight: 300;
   font-size: 24pt;
   margin-bottom: 16pt;
 }
 h2 {
-  font-weight: 300;
   font-size: 18pt;
-  margin-bottom:  12pt;
 }
 h3 {
   font-size: 14pt;
-  margin-bottom: 8pt;
 }
 h4{
   font-size: 13pt;
-  margin-bottom: 8pt;
 }
 h5, h6 {
   font-size: 12pt;
-  margin-bottom: 8pt;
 }
 
 p {
-  margin: 1.2em 0 1.2em;
+  margin: 11pt 0;
 }
 
 html {
