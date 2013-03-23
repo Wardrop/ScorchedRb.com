@@ -1,7 +1,10 @@
 <% items.each do |href, hash|
   has_children = !!(hash[:children] && !hash[:children].empty?)
+  is_selected = !!has_children ||
+    absolute(href) == request.path_info ||
+    absolute(href) == request.path_info.sub(%r{(/[^/]+)\..+$}, '\1')
   %>
-  <li <%= 'class="selected"' if has_children || absolute(href) == request.path_info %>>
+  <li <%= 'class="selected"' if is_selected %>>
     <a href="<%= absolute(href) %>"><%= hash[:name] %></a>
     <% if has_children %>
       <ul>

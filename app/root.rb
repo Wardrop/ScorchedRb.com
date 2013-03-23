@@ -53,10 +53,10 @@ module ScorchedRb
       @navigation
     end
     
-    get '/*.css' do |name|
-      response['Content-Type'] = 'text/css'
-      render :"#{name}.scss", layout: false
-    end
+    # get '/*.css' do |name|
+    #   response['Content-Type'] = 'text/css'
+    #   render :"#{name}.scss", layout: false
+    # end
     
     # Maps the accessed URL to a file under ./pages
     # If URL maps to a directory, looks for an index file. If no index fle exists, redirects browser to the first file
@@ -72,27 +72,31 @@ module ScorchedRb
           if index_files.empty?
             files = Dir.glob(File.join(path, '*')).sort
             if files.empty?
-              render "<p><em>No pages exist under: #{page}</em></p>"
+              "<p><em>No pages exist under: #{page}</em></p>"
             else
               redirect [page, File.basename(files[0]).sub(%r{\..+}, '').sub(%r{^[0-9_]*}, '')].join('/').gsub(%r{/+}, '/')
             end
           else
-            render File.join('../', index_files[0]).to_sym
+            File.join('../', index_files[0]).to_sym
           end
         elsif File.exists? path
-          render File.join('../', path).to_sym
+          File.join('../', path).to_sym
         end
       end
-
-      response.status = 404 unless view
-      view
+      
+      if view
+        @title = %r{([^/]+?)(\..*)?$}.match(page)[1].snake_to_titlecase rescue nil
+        render view
+      else
+        response.status = 404
+      end
     end
     
     after status: 404 do
       response.body = render(:'404')
     end
     
-    after do
+    after status: 200 do
       if response.body.respond_to?(:join) && (!response['Content-Type'] || response['Content-Type'] =~ %r{^text/html})
         doc = Nokogiri::HTML(response.body.join(''))
         doc.css('code').each do |element|
