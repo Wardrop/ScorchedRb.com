@@ -12,16 +12,12 @@ module ScorchedRb
     render_defaults[:layout] = :layout
     render_defaults[:fenced_code_blocks] = true
     
-    def pages
-      return @pages if @pages
-      @pages = Dir.glob('pages/**/*').map! { |v| v.sub(%r{^pages/}, '') }.reject { |v| v =~ /index.md$/}
-    end
-    
     def navigation
       unless @navigation
         @navigation = {
           '/' => {name: 'Home'},
           '/docs' => {name: 'Documentation'},
+          'http://rubydoc.info/gems/scorched' => {name: 'API'}
           'http://github.com/wardrop/Scorched' => {name: 'Code'},
           'http://github.com/wardrop/Scorched/issues' => {name: 'Tracker'},
           'https://groups.google.com/d/forum/scorched' => {name: 'Discuss'},
@@ -53,11 +49,6 @@ module ScorchedRb
       end
       @navigation
     end
-    
-    # get '/*.css' do |name|
-    #   response['Content-Type'] = 'text/css'
-    #   render :"#{name}.scss", layout: false
-    # end
     
     # Maps the accessed URL to a file under ./pages
     # If URL maps to a directory, looks for an index file. If no index fle exists, redirects browser to the first file
