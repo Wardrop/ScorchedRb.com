@@ -9,7 +9,7 @@ It wasn't long after the switch to Padrino that I realised that what Padrino cal
 
 From when I made the decision to roll-my-own, to the moment I pushed up version 0.1, easily half of that time was spent conceptualising. I hate being called a perfectionist, but I certainly have a preference for quality, so it was important that Scorched be implemented as thoughtfully as the language it was written in, Ruby.
 
-In hind-sight, what Scorched has turned into is some kind modular, inheritable, nestable version of Sinatra... but of course better :-)
+In hind-sight, what Scorched has turned into is some kind of modular, inheritable, nest-able version of Sinatra, with even less opinion and bloat.
 
 
 ScorchedRb.com

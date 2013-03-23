@@ -8,9 +8,14 @@ module ScorchedRb
     if ENV['RACK_ENV'] == 'development'
       config[:static] = '../public'
     end
-    render_defaults[:dir] = 'views'
-    render_defaults[:layout] = :layout
-    render_defaults[:fenced_code_blocks] = true
+    render_defaults.merge!(
+      dir: 'views',
+      layout: :layout,
+      fenced_code_blocks: true,
+      autolink: true,
+      no_intra_emphasis: true,
+      superscript: true
+    )
     
     def navigation
       unless @navigation
