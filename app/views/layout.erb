@@ -19,7 +19,7 @@
     </footer>
   </div>
   <div id="content">
-    <div class="notice">Note, this website and Scorched are affected by a <a href="http://bugs.ruby-lang.org/issues/8100">bug in Ruby 2.0.0</a>. Please mind the  random "bad gateway" errors in the meantime.</div>
+    <!-- <div class="notice"></div> -->
     <%= yield %>
     <% if request.path_info =~ %r{/docs($|/)} && response.status < 400 %>
       <div id="disqus_thread"></div>
