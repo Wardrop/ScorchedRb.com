@@ -8,7 +8,7 @@ GEM
       rack (>= 0.4)
     redcarpet (2.2.2)
     sass (3.2.6)
-    scorched (0.7)
+    scorched (0.8)
       rack (~> 1.4)
       rack-accept (~> 0.4)
       tilt (~> 1.3)
