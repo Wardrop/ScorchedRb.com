@@ -11,10 +11,12 @@ module ScorchedRb
     render_defaults.merge!(
       dir: 'views',
       layout: :layout,
-      fenced_code_blocks: true,
-      autolink: true,
-      no_intra_emphasis: true,
-      superscript: true
+      tilt: {
+        fenced_code_blocks: true,
+        autolink: true,
+        no_intra_emphasis: true,
+        superscript: true
+      }
     )
     
     def navigation
