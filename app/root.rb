@@ -6,7 +6,7 @@ module ScorchedRb
   class Root < Scorched::Controller
     # Configure ScorchedRb defaults
     if ENV['RACK_ENV'] == 'development'
-      config[:static] = '../public'
+      config[:static_dir] = '../public'
     end
     render_defaults.merge!(
       dir: 'views',
