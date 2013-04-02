@@ -20,7 +20,7 @@ You can get a copy of the source code for this website, or even contribute to it
 * CentOS 6.3
 * Nginx
 * Phusion Passenger Enterprise
-* Ruby 2.0.0-p0
+* Ruby 2.0.0-p0, patched with [changeset 39919](http://bugs.ruby-lang.org/projects/ruby-trunk/repository/revisions/39919)
 * Git
 
 Everything under docs is pulled from the ``docs/`` directory of the Scorched Github repository. At the same time, the README is also pulled over to form the home page. This sync happens every half hour, and on re-deployment. Deployment is achieved by pushing to a bare git repository on this server, with a ``post-receive`` hook script configured to checkout to the production directory, run bundler, and restart the app among a few other things.

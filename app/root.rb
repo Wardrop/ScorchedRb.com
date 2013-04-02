@@ -22,13 +22,13 @@ module ScorchedRb
     def navigation
       unless @navigation
         @navigation = {
-          '/' => {name: 'Home'},
-          '/docs' => {name: 'Documentation'},
+          absolute('/') => {name: 'Home'},
+          absolute('/docs') => {name: 'Documentation'},
           'http://rubydoc.info/gems/scorched' => {name: 'API'},
           'http://github.com/wardrop/Scorched' => {name: 'Code'},
           'http://github.com/wardrop/Scorched/issues' => {name: 'Tracker'},
-          'https://groups.google.com/d/forum/scorched' => {name: 'Discuss'},
-          '/about' => {name: 'About'}
+          absolute('/discuss') => {name: 'Discuss'},
+          absolute('/about') => {name: 'About'}
         }
         
         # Dynamic generation of navigation hiearchy. Only nodes corresponding to the request URL are generated.
