@@ -212,31 +212,29 @@ body {
   padding-top: 1.45em;
 }
 
+pre, code, .code {
+  font-family: Consalas, Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  background: #eee;
+}
+
 pre {
   display: block;
-  font-family: 'Consalas', Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
-  font-size: 9.5pt;
   white-space: pre;
   padding: 1.1em 1.4em;
   margin: 1.5em 0;
-  background: #eee;
-  border: 1px solid #ddd;
   overflow-x: auto;
 }
 .code, code {
   display: inline;
-  font-family: 'Consalas', Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
-  font-size: 9.5pt;
   padding: 0 0.3em;
-  background: #eee;
-  border: 1px solid #ddd;
 }
 pre > code, pre > .code {
   display: inline;
   background: transparent;
   border: none;
   padding: 0;
-  font-size: 9pt;
 }
 footer {
   display: block;
