@@ -14,9 +14,9 @@
     <ul id="navigation">
       <%= render :navigation, locals: {items: navigation} %>
     </ul>
-    <footer>
+    <div class="footer">
       <p>Sponsored by<br/><a href="http://www.phusion.nl"><img src="<%= absolute '/images/phusion_logo.png' %>" /></a></p>
-    </footer>
+    </div>
   </div>
   <div id="content">
     <!-- <div class="notice"></div> -->
@@ -34,6 +34,10 @@
       <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
       <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     <% end %>
+    <div class="footer">
+      <p>Using Scorched v<%= Scorched::VERSION %></p>
+    </div>
+    
   </div>
 </body>
 </html>

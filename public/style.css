@@ -236,11 +236,14 @@ pre > code, pre > .code {
   border: none;
   padding: 0;
 }
-footer {
+.footer {
   display: block;
-  margin: 2em 0 0;
-  text-align: right;
+  margin: 2.5em 0 0;
+  text-align: center;
   color: #aaa;
   font-size: 80%;
   font-weight: 300;
+}
+#shoulder .footer {
+  text-align: right;
 }
