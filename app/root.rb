@@ -3,6 +3,8 @@ Bundler.require(:default)
 Dir.glob(File.join(__dir__, 'lib', '*.rb')) { |f| require_relative f }
 
 module ScorchedRb
+  DEFAULT_TITLE = 'Scorched - Light-weight Ruby Web Framework'
+  
   class Root < Scorched::Controller
     # Configure ScorchedRb defaults
     if ENV['RACK_ENV'] == 'development'
@@ -57,6 +59,11 @@ module ScorchedRb
       @navigation
     end
     
+    get '/' do
+      @title = DEFAULT_TITLE
+      pass
+    end
+    
     # Maps the accessed URL to a file under ./pages
     # If URL maps to a directory, looks for an index file. If no index fle exists, redirects browser to the first file
     # in the directory. If no files exist in the directory, a message is returned saying so.
@@ -84,7 +91,7 @@ module ScorchedRb
       end
       
       if view
-        @title = %r{([^/]+?)(\..*)?$}.match(page)[1].snake_to_titlecase rescue nil
+        @title ||= %r{([^/]+?)(\..*)?$}.match(page)[1].snake_to_titlecase + " - Scorched" rescue DEFAULT_TITLE
         render view
       else
         response.status = 404
