@@ -61,7 +61,7 @@ module ScorchedRb
     # If URL maps to a directory, looks for an index file. If no index fle exists, redirects browser to the first file
     # in the directory. If no files exist in the directory, a message is returned saying so.
     # If multiple files with the same name but different extensions exist, the first one returned by Dir#glob is served.
-    get '/**' do |page|
+    get '/**?' do |page|
       page = page.empty? ? 'index' : page
       path_pattern = Regexp.new File.join('pages', page).split('/').map { |v| "[0-9_]*#{v}" }.join('/').insert(0, '^')
       path = Dir.glob('pages/**/*').unshift('pages').select { |f| f =~ path_pattern }.first
