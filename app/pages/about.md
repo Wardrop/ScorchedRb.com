@@ -16,11 +16,11 @@ ScorchedRb.com
 --------------
 You can get a copy of the source code for this website, or even contribute to it over at [Github](http://github.com/Wardrop/ScorchedRb.com). It should serve as another example of Scorched in action, albiet a relatively simple one. In addition to Scorched, this website is also powered by:
 
-* Xen VM with 384mb RAM and 1 vCPU
-* CentOS 6.3
+* Xen VM with 768 MB RAM and 1 vCPU
+* OpenSUSE 12.3
 * Nginx
 * Phusion Passenger Enterprise
-* Ruby 2.0.0-p0, patched with [changeset 39919](http://bugs.ruby-lang.org/projects/ruby-trunk/repository/revisions/39919)
+* Ruby 2.0
 * Git
 
 Everything under docs is pulled from the ``docs/`` directory of the Scorched Github repository. At the same time, the README is also pulled over to form the home page. This sync happens every half hour, and on re-deployment. Deployment is achieved by pushing to a bare git repository on this server, with a ``post-receive`` hook script configured to checkout to the production directory, run bundler, and restart the app among a few other things.
