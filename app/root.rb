@@ -4,7 +4,7 @@ Dir.glob(File.join(__dir__, 'lib', '*.rb')) { |f| require_relative f }
 
 module ScorchedRb
   DEFAULT_TITLE = 'Scorched - Light-weight Ruby Web Framework'
-  
+
   class Root < Scorched::Controller
     # Configure ScorchedRb defaults
     if ENV['RACK_ENV'] == 'development'
@@ -20,19 +20,19 @@ module ScorchedRb
         superscript: true
       }
     )
-    
+
     def navigation
       unless @navigation
         @navigation = {
           absolute('/') => {name: 'Home'},
           absolute('/docs') => {name: 'Documentation'},
-          'http://rubydoc.info/gems/scorched' => {name: 'API'},
-          'http://github.com/wardrop/Scorched' => {name: 'Code'},
-          'http://github.com/wardrop/Scorched/issues' => {name: 'Tracker'},
+          'https://rubydoc.info/gems/scorched' => {name: 'API'},
+          'https://github.com/wardrop/Scorched' => {name: 'Code'},
+          'https://github.com/wardrop/Scorched/issues' => {name: 'Tracker'},
           absolute('/discuss') => {name: 'Discuss'},
           absolute('/about') => {name: 'About'}
         }
-        
+
         # Dynamic generation of navigation hiearchy. Only nodes corresponding to the request URL are generated.
         base_dir = 'pages'
         structure = Dir.glob(File.join(base_dir, '**/*'))
@@ -42,7 +42,7 @@ module ScorchedRb
             file = structure.select { |f| f =~ /#{File.join(base_dir, path).insert(0, "^")}/ }[0]
             {file: file, url: file.sub(%r{^#{base_dir}}, '').gsub(%r{/[0-9_]*}, '/').sub(%r{\.[^.]*$}, '')} if file
           }.compact
-          
+
         unless paths.empty? || @navigation[paths.first[:url]].nil?
           paths.inject(@navigation[paths.first[:url]][:children] = {}) do |memo, path|
             memo = memo[path[:url]][:children] = {} unless memo.empty? || !memo[path[:url]]
@@ -58,12 +58,12 @@ module ScorchedRb
       end
       @navigation
     end
-    
+
     get '/' do
       @title = DEFAULT_TITLE
       pass
     end
-    
+
     # Maps the accessed URL to a file under ./pages
     # If URL maps to a directory, looks for an index file. If no index fle exists, redirects browser to the first file
     # in the directory. If no files exist in the directory, a message is returned saying so.
@@ -89,7 +89,7 @@ module ScorchedRb
           File.join('../', path).to_sym
         end
       end
-      
+
       if view
         @title ||= %r{([^/]+?)(\..*)?$}.match(page)[1].snake_to_titlecase + " - Scorched" rescue DEFAULT_TITLE
         render view
@@ -97,11 +97,11 @@ module ScorchedRb
         response.status = 404
       end
     end
-    
+
     after status: 404 do
       response.body = render(:'404')
     end
-    
+
     after status: 200 do
       if response.body.respond_to?(:join) && (!response['Content-Type'] || response['Content-Type'] =~ %r{^text/html})
         doc = Nokogiri::HTML(response.body.join(''))
@@ -115,6 +115,6 @@ module ScorchedRb
         response.body = [doc.to_html]
       end
     end
-    
+
   end
 end

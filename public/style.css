@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Titillium+Web|Open+Sans:300italic,400italic,700italic,400,700,300);
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web|Open+Sans:300italic,400italic,700italic,400,700,300);
 
 * {
   box-sizing: border-box;
@@ -117,7 +117,7 @@ body {
 
 #navigation {
   display: block;
-  font-weight: 300; 
+  font-weight: 300;
   font-size: 15pt;
   min-width: 60%;
 }
