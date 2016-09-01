@@ -26,7 +26,7 @@ module ScorchedRb
         @navigation = {
           absolute('/') => {name: 'Home'},
           absolute('/docs') => {name: 'Documentation'},
-          'https://rubydoc.info/gems/scorched' => {name: 'API'},
+          'http://rubydoc.info/gems/scorched' => {name: 'API'},
           'https://github.com/wardrop/Scorched' => {name: 'Code'},
           'https://github.com/wardrop/Scorched/issues' => {name: 'Tracker'},
           absolute('/discuss') => {name: 'Discuss'},
